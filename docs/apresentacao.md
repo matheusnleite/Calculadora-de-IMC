@@ -2,7 +2,7 @@
 
 ## Slide 1: Visão Geral
 - **Título**: Calculadora de IMC e Métricas de Saúde
-- **Desenvolvido por**: [Nomes dos integrantes]
+- **Desenvolvido por**: Matheus Nascimento Leite e Luccas Asaphe Pena Salomão
 - **Tecnologias**: Kotlin, Jetpack Compose, Room, Hilt
 
 ## Slide 2: Funcionalidades Principais
