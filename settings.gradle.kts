@@ -19,6 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Calculadora-de-IMC"
+rootProject.name = "Calculadora IMC"
 include(":app")
- 
