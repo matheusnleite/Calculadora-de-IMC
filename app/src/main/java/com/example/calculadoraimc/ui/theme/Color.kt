@@ -13,7 +13,7 @@ val Pink40 = Color(0xFF7D5260)
 
 // -- Bases
 val WhiteTag = Color(0xFFFFFFFF)
-val BlueColor = Color(187, 231, 239)
+val BlueColor = Color(0, 89, 218, 255)
 val GreenColor = Color(210, 235, 190)
 val GreyColor = Color(224, 224, 224, 255)
 val YellowColor = Color(255, 244, 148)
