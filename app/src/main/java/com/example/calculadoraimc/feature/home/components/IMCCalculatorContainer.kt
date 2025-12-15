@@ -106,7 +106,7 @@ fun IMCCalculatorContainer(
                 expanded = isDropdownExpanded,
                 onDismissRequest = { isDropdownExpanded = false }
             ) {
-                ActivityLevel.values().forEach { level ->
+                ActivityLevel.entries.forEach { level ->
                     DropdownMenuItem(
                         text = { Text(level.displayName) },
                         onClick = {
