@@ -71,7 +71,7 @@ fun Home(
             modifier = Modifier
                 .padding(paddingValues)
                 .padding(start = 16.dp, end = 16.dp, top = 12.dp)
-                .verticalScroll(rememberScrollState()) // <<--- CORREÇÃO APLICADA AQUI
+                .verticalScroll(rememberScrollState())
         ) {
             // Entrada de dados
             IMCCalculatorContainer(
@@ -100,7 +100,6 @@ fun Home(
 
 @Composable
 fun HomeContent(result: IMCData) {
-    // Card Principal
     MainCard(result)
 
     Spacer(Modifier.height(28.dp))

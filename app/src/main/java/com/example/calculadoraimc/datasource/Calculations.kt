@@ -8,6 +8,9 @@ import kotlin.math.roundToInt
 
 object Calculations {
 
+    /** Gemini - início
+     * Prompt: "Crie a lógica de cálculo do IMC em uma função. A função deve receber altura (em cm) e peso (em kg) como Strings, fazer a validação, calcular o IMC, determinar a classificação (Abaixo do peso, Peso normal, etc.) e retornar um objeto IMCData com o resultado."
+     */
     @SuppressLint("DefaultLocale")
     fun calculateIMC(height: String, weight: String, response: (IMCData) -> Unit) {
         val heightValue = height.toIntOrNull()
@@ -33,13 +36,13 @@ object Calculations {
 
         response(IMCData(imcFormatted, imcClassification, imc))
     }
+    /** Gemini - final */
 
-    /**
-     * Calcula a Taxa Metabólica Basal (TMB) usando a fórmula de Mifflin-St Jeor.
-     * Fórmula para homens: (10 * peso em kg) + (6.25 * altura em cm) - (5 * idade em anos) + 5
-     * Fórmula para mulheres: (10 * peso em kg) + (6.25 * altura em cm) - (5 * idade em anos) - 161
+    /** Gemini - início
+     * Prompt: "Crie uma função para calcular a Taxa Metabólica Basal (TMB) usando a fórmula de Mifflin-St Jeor. A função deve receber peso (Double), altura (Int), idade (Int) e sexo (enum Gender) e retornar a TMB como um Int. Documente a fórmula no código."
      */
     fun calculateBMR(weight: Double, height: Int, age: Int, gender: Gender): Int {
+        // Fórmula de Mifflin-St Jeor
         val bmr = (10 * weight) + (6.25 * height) - (5 * age)
         return if (gender == Gender.MALE) {
             (bmr + 5).roundToInt()
@@ -47,11 +50,10 @@ object Calculations {
             (bmr - 161).roundToInt()
         }
     }
+    /** Gemini - final */
 
-    /**
-     * Calcula o Peso Ideal usando a Fórmula de Devine.
-     * Fórmula para homens: 50 kg + 2.3 kg por cada polegada acima de 5 pés.
-     * Fórmula para mulheres: 45.5 kg + 2.3 kg por cada polegada acima de 5 pés.
+    /** Gemini - início
+     * Prompt: "Preciso de uma função que calcule o Peso Ideal usando a Fórmula de Devine. Ela deve receber altura (Int) e sexo (Gender), e retornar uma String formatada com a faixa de peso ideal (ex: '65.0 - 79.5 kg')."
      */
     @SuppressLint("DefaultLocale")
     fun calculateIdealWeight(height: Int, gender: Gender): String {
@@ -71,11 +73,8 @@ object Calculations {
 
         return "${String.format("%.1f", lowerBound)} - ${String.format("%.1f", upperBound)} kg"
     }
+    /** Gemini - final */
 
-    /**
-     * Estima a necessidade calórica diária com base na TMB e no nível de atividade física.
-     * Fórmula: Necessidade Calórica = TMB * Fator de Atividade.
-     */
     fun calculateDailyCaloricNeed(bmr: Int, activityLevel: ActivityLevel): Int {
         return (bmr * activityLevel.factor).roundToInt()
     }

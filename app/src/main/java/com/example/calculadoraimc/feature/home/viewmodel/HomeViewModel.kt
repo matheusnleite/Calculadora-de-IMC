@@ -22,6 +22,21 @@ data class ValidationState(
     val activityLevelError: Boolean = false
 )
 
+/** Gemini - início
+ * Prompt: "Crie um ViewModel para a tela principal que siga a arquitetura MVVM. Ele deve gerenciar o estado dos campos de entrada (altura, peso, idade, etc.), o estado de validação e o resultado final dos cálculos. Ele também deve interagir com um repositório para salvar os dados."
+ */
+/**
+ * ViewModel para a tela principal (Home).
+ *
+ * Esta classe é o coração da arquitetura MVVM para a tela de cálculo. Ela é responsável por:
+ * - Manter o estado de todos os campos de entrada (altura, peso, idade, etc.) usando o `mutableStateOf` do Compose.
+ * - Expor os estados para a UI (View) de forma segura, permitindo apenas a leitura.
+ * - Receber eventos da UI através de funções públicas (ex: `onHeightChange`).
+ * - Orquestrar a lógica de validação e cálculo.
+ * - Comunicar-se com o `IMCHistoryRepository` para persistir os dados.
+ *
+ * @property repository O repositório para acesso à camada de dados (banco de dados Room).
+ */
 class HomeViewModel(private val repository: IMCHistoryRepository) : ViewModel() {
     var height by mutableStateOf("")
         private set
@@ -75,6 +90,21 @@ class HomeViewModel(private val repository: IMCHistoryRepository) : ViewModel() 
         validationState = validationState.copy(activityLevelError = false)
     }
 
+    /** Gemini - início
+     * Prompt: "Atualize a função `calculate` para primeiro validar todos os campos. Se algum for inválido, atualize um `validationState` e pare. Se tudo for válido, chame as funções de cálculo para IMC, TMB, Peso Ideal e Necessidade Calórica, combine os resultados em um único objeto, atualize o estado da UI e chame a função para salvar no banco de dados."
+     */
+    /**
+     * Executa o processo de validação e cálculo.
+     *
+     * Esta função é o ponto de entrada principal acionado pelo usuário. Ela primeiro valida
+     * todos os campos de entrada (altura, peso, idade, etc.). Se qualquer campo for inválido,
+     * ela atualiza o [validationState] para que a UI possa exibir os erros e interrompe a execução.
+     *
+     * Se todos os dados forem válidos, ela procede com a chamada para as funções de cálculo
+     * em [Calculations], combina todos os resultados em um único objeto [IMCData], atualiza o estado
+     * [resultIMC] para a UI ser recomposta e, finalmente, chama a função [saveCalculation] para
+     * persistir o registro no banco de dados.
+     */
     fun calculate() {
         val heightValue = height.toIntOrNull()
         val weightValue = weight.toDoubleOrNull()
@@ -122,6 +152,7 @@ class HomeViewModel(private val repository: IMCHistoryRepository) : ViewModel() 
             saveCalculation(finalResult)
         }
     }
+    /** Gemini - final */
 
     private fun saveCalculation(result: IMCData) = viewModelScope.launch {
         val history = IMCHistory(
@@ -139,3 +170,4 @@ class HomeViewModel(private val repository: IMCHistoryRepository) : ViewModel() 
         repository.insertHistory(history)
     }
 }
+/** Gemini - final */

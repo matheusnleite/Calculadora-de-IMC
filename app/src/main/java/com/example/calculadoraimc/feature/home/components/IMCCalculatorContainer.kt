@@ -143,7 +143,7 @@ private fun IMCCalculatorContainerPreview() {
             age = age, onAgeChange = { age = it },
             gender = gender, onGenderSelected = { gender = it },
             activityLevel = activityLevel, onActivityLevelSelected = { activityLevel = it },
-            validationState = ValidationState(ageError = true), // Exemplo de erro
+            validationState = ValidationState(ageError = true),
             onCalculate = {}
         )
     }

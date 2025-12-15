@@ -19,7 +19,6 @@ import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
 import com.patrykandpatrick.vico.core.cartesian.data.LineCartesianLayerModel
 import java.text.SimpleDateFormat
 import java.util.Locale
-import kotlin.math.roundToInt
 
 @Composable
 fun IMCHistoryChart(historyList: List<IMCHistory>) {
@@ -35,10 +34,8 @@ fun IMCHistoryChart(historyList: List<IMCHistory>) {
         )
     }
 
-    // CORREÇÃO 1: Definindo explicitamente que 'value' é Double
     val dateTimeFormatter = remember(chartData) {
         CartesianValueFormatter { _,value, _ ->
-            // Convertendo Double para Int de forma segura
             val index = value.toInt()
 
             if (index in chartData.indices) {
@@ -53,7 +50,6 @@ fun IMCHistoryChart(historyList: List<IMCHistory>) {
     CartesianChartHost(
         chart = rememberCartesianChart(
             rememberLineCartesianLayer(),
-            // CORREÇÃO 2: Sintaxe correta da Vico 2.0.0 Estável
             startAxis = VerticalAxis.rememberStart(),
             bottomAxis = HorizontalAxis.rememberBottom(
                 valueFormatter = dateTimeFormatter

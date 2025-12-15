@@ -1,5 +1,6 @@
 package com.example.calculadoraimc.feature.home.components
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
@@ -11,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -31,6 +31,7 @@ import com.example.calculadoraimc.ui.theme.CalculadoraIMCTheme
 /**
  * Gráfico de acordo com o índice IMC.
  */
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun IMCGraphic(
     imcValue: Double
